@@ -22,7 +22,7 @@ export async function getChats(
         _id: chat._id,
         participant: otherParticipants,
         lastMessage: chat.lastMessage,
-        lestMessageAt: chat.lastMessageAt,
+        lastMessageAt: chat.lastMessageAt,
         createdAt: chat.createdAt,
       };
     });
