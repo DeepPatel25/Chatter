@@ -48,9 +48,9 @@ export async function authCallback(
         email: clerkUser.emailAddresses[0]?.emailAddress,
         avatar: clerkUser.imageUrl,
       });
-
-      return res.json({ user });
     }
+
+    return res.json({ user });
   } catch (error) {
     res.status(500);
     next(error);
