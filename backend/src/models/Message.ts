@@ -1,4 +1,3 @@
-import { indexOfLine } from "bun";
 import mongoose, { Schema, type Document } from "mongoose";
 
 export interface IMessage extends Document {

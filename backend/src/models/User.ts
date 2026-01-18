@@ -15,6 +15,7 @@ const UserSchema: Schema = new Schema<IUser>(
       type: String,
       required: true,
       unique: true,
+      // Note: unique indexes are automatically created for clerkId
     },
     name: {
       type: String,
@@ -27,6 +28,7 @@ const UserSchema: Schema = new Schema<IUser>(
       unique: true,
       lowercase: true,
       trim: true,
+      // Note: unique indexes are automatically created for email
     },
     avatar: {
       type: String,
@@ -37,6 +39,9 @@ const UserSchema: Schema = new Schema<IUser>(
     timestamps: true,
   },
 );
+
+// Note: Do not add explicit UserSchema.index(...) calls for clerkId/email.
+// Mongoose will create unique indexes automatically based on `unique: true`.
 
 export const User = mongoose.model("User", UserSchema);
 export default User;
