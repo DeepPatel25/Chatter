@@ -102,7 +102,7 @@ export async function initializeSocket(httpServer: HttpServer) {
           chat.lastMessageAt = new Date();
           await chat.save();
 
-          await message.populate("sender", "name email avatar");
+          await message.populate("sender", "name avatar");
 
           // Emit the new message to all participants in the chat
           io.to(`chat:${chatId}`).emit("new-message", { message });
