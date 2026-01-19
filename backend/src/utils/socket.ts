@@ -46,7 +46,7 @@ export async function initializeSocket(httpServer: HttpServer) {
 
       next();
     } catch (error: any) {
-      next(new Error(error));
+      next(new Error(error?.message || "Authentication failed"));
     }
   });
 
@@ -127,7 +127,7 @@ export async function initializeSocket(httpServer: HttpServer) {
       // notify other users that this user is offline
       socket.broadcast.emit("user-offline", { userId });
     });
-
-    return io;
   });
+
+  return io;
 }
