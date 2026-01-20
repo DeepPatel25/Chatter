@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 
 import { clerkMiddleware } from "@clerk/express";
 
@@ -29,5 +30,15 @@ app.use("/api/users", userRoutes);
 
 // Error handling middleware for handling errors globally.
 app.use(errorHandler);
+
+// serve frontend in production
+if (process.env.NODE_ENV === "production") {
+  // Serve static files from the web/dist directory
+  app.use(express.static(path.join(__dirname, "../../web/dist")));
+
+  app.get("/{*any}", (_req, res) => {
+    res.sendFile(path.join(__dirname, "../../web/dist", "index.html"));
+  });
+}
 
 export default app;
